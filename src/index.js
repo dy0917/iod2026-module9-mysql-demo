@@ -2,14 +2,16 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 require("./dbConnect");
-const userRoutes = require("./routes/userRoutes")
+const userRoutes = require("./routes/userRoutes");
+const postRoutes = require("./routes/postRoutes");
 
 // parse requests of content-type - application/json
 app.use(express.json());
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to my MySQL application." });
 });
-app.use('/api/users', userRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
